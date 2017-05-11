@@ -1,0 +1,20 @@
+<md-dialog aria-label="Error Dialog">
+    <form ng-cloak>
+        <md-toolbar class="md-warn">
+            <div class="md-toolbar-tools">
+                <h2>Error</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <p>{{error}}</p>
+            </div>
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button ng-click="cancel()">
+                Got It!
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

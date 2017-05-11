@@ -1,0 +1,23 @@
+{
+  "name": "TVShow_Explorer",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular-material": "^1.1.0",
+    "angular-resource": "^1.5.8",
+    "es6-promise": "^3.2.2"
+  },
+  "private": true,
+  "authors": [
+    "Eric Satterwhite <eric.satterwhite@eagles.usm.edu>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>IMDb - TV Show Explorer</title>
+
+    <!-- Angular Material Style Sheet -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+
+    <!-- App CSS Files -->
+    <link rel="stylesheet" href="app.css">
+    <link rel="icon" type="image/png" href="images/imdb.png">
+</head>
+<body ng-app="showExplorer">
+    <div ng-controller="showExplorerCtrl as vm" ng-cloak>
+        <md-toolbar class="md-primary">
+
+            <h1 class="header-text"><img src="images/tv.png" alt="" /> TV Show Explorer</h1>
+        </md-toolbar>
+        <md-content>
+            <div class="search-form" layout="row" layout-align="center center">
+                <form name="searchForm" flex="80">
+                    <md-input-container class="md-block">
+                        <label for="searchText">Find a TV Show</label>
+                        <input required name="searchText" md-no-asterisk id="searchText" ng-model="vm.searchText">
+                        <md-icon md-font-icon="search" aria-label="search"></md-icon>
+                        <div ng-messages="searchForm.description.$error">
+                            <div ng-message="required">This is required</div>
+                        </div>
+                    </md-input-container>
+                    <md-button class="md-raised md-primary" ng-click="vm.getShow()">Get Episodes</md-button>
+                </form>
+            </div>
+            <div class="spinner" layout="row" layout-align="space-around" ng-show="vm.loadingShow">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+            </div>
+            <div class="show-results" layout-padding ng-show="vm.show">
+                <div class="average-rating">
+                    <p>Average Rating of Shown Episodes: {{vm.getAverageRating() | number : 2}}</p>
+                </div>
+                <md-toolbar layout="row" class="md-primary md-hue-3">
+                    <div class="md-toolbar-tools">
+                        <span flex="25">Season {{vm.show.Season}}</span>
+                        <span flex="75" layout="row" layout-align="end center">
+                            <md-button class="md-raised" ng-show="vm.show.Season > 1" ng-click="vm.getSeason(vm.show.Season - 1)">Previous</md-button>
+                            <md-button class="md-raised" ng-show="vm.show.Season < vm.show.totalSeasons" ng-click="vm.getSeason(vm.show.Season + 1)">Next</md-button>
+                        </span>
+                    </div>
+                </md-toolbar>
+                <div class="spinner" layout="row" layout-align="space-around" ng-show="vm.loadingEpisodes">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+                <md-content ng-show="vm.show && vm.loadingEpisodes === false">
+                    <md-list flex>
+                        <md-list-item class="md-3-line" ng-repeat="episode in vm.show.Episodes" ng-class="{'high-rated':episode.imdbRating >= 8.5}">
+                            <img src="{{episode.Poster}}" class="poster" width="201" height="201"/>
+                            <div class="md-list-item-text" layout="column">
+                                <h4>Episode {{episode.Episode}} <md-button class="md-primary" ng-click="vm.hideEpisode(episode)">Hide Episode</md-button></h4>
+                                <h3><b>{{episode.Title}}</b></h3>
+                                <p>Released: <b>{{episode.releaseMonth}}</b></p>
+                                <p>IMDb Rating: <b>{{episode.imdbRating}}</b></p><br/>
+                                <p class="plot-text">{{episode.Plot}}</p>
+                            </div>
+                            <md-divider></md-divider>
+                        </md-list-item>
+
+                    </md-list>
+                </md-content>
+            </div>
+        </md-content>
+    </div>
+
+
+    <!-- IE Promise Suppport -->
+    <script src="bower_components/es6-promise/es6-promise.js"></script>
+
+    <!-- Angular Libraries -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+
+    <!-- Angular Material Framework -->
+    <script src="bower_components/angular-material/angular-material.min.js"></script>
+
+    <!-- Angular Modules -->
+    <script src="application.js"></script>
+
+    <!-- Angular Services -->
+    <script src="ShowsService.js"></script>
+
+    <!--Angular Controllers -->
+    <script src="show-explorer.controller.js"></script>
+</body>
+</html>

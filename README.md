@@ -41,6 +41,12 @@ Note that the API is available in HTTPS.
 
 ## Quick Start 
 Manual: download latest from here 
+#### Installing AngularJS Material
+You can install this package locally either with npm, jspm, or bower (deprecated).
+##### To install latest formal release 
+npm install angular-material
+##### To install latest release and update package.json
+npm install angular-material --save
 #### Bower:
 bower install ng-file-upload --save
 #### NuGet: PM> Install-Package angular-file-upload

@@ -1,14 +1,14 @@
 # KAES-TV-Show-explorer
-Build with AngularJS application that lists episodes for TV shows. 
+Build with AngularJS & Matarial Design application that lists episodes for TV shows. 
 ## Features: 
 The basic idea is that a user should be able to enter the name of a TVshow,
 for example: Silicon Valley, Game of Thrones or Breaking Bad. Then a list of episodes from the first season of the show should appear. 
 Use the API that is described above. For each episode various information should be available, such as episode number, title, plot and poster image.
 
-1. The user should be able to enter the name of whatever TVshow
+1.The user should be able to enter the name of whatever TVshow
 they want. But let the default value be ‘Silicon Valley’ and on document load show the episode list for this show. Fetch the episodes of the first season and show them.
 
-2. For each episode show:
+2.For each episode show:
 ##### a. The episode number, for example: 1
 ##### b. The episode title, for example: Minimum Viable Product
 ##### c. The episode plot, for example: Richard is a computer programmer. He has to
